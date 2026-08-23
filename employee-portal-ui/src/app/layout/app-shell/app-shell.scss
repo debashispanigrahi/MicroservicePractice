@@ -1,0 +1,466 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.app-shell {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #f5f7fb;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+  width: 248px;
+  height: 100vh;
+
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #111827;
+  color: #ffffff;
+
+  border-right: 1px solid #1f2937;
+}
+
+
+/* Brand */
+
+.brand {
+  height: 82px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 24px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  );
+
+  box-shadow:
+    0 6px 18px rgba(99, 102, 241, 0.3);
+
+  mat-icon {
+    width: 21px;
+    height: 21px;
+
+    font-size: 21px;
+
+    color: white;
+  }
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 11px;
+}
+
+.brand-title {
+  font-size: 15px;
+  font-weight: 700;
+
+  line-height: 18px;
+
+  letter-spacing: -0.2px;
+}
+
+.brand-subtitle {
+  margin-top: 2px;
+
+  color: #a5b4fc;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+
+/* Navigation */
+
+.navigation {
+  flex: 1;
+
+  padding: 24px 14px;
+}
+
+.nav-section-title {
+  padding: 0 12px;
+
+  color: #6b7280;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  margin-bottom: 8px;
+}
+
+.nav-section-title.second {
+  margin-top: 28px;
+}
+
+.nav-item {
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 12px;
+
+  margin-bottom: 4px;
+
+  border-radius: 10px;
+
+  color: #9ca3af;
+
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.nav-item mat-icon {
+  width: 19px;
+  height: 19px;
+
+  margin-right: 12px;
+
+  font-size: 19px;
+}
+
+.nav-item:hover {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-item.active {
+  color: #ffffff;
+
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.22),
+    rgba(99, 102, 241, 0.1)
+  );
+
+  box-shadow:
+    inset 3px 0 0 #818cf8;
+}
+
+.nav-item.active mat-icon {
+  color: #a5b4fc;
+}
+
+
+/* Sidebar footer */
+
+.sidebar-footer {
+  padding: 18px 16px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+
+  padding: 12px;
+
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  margin-right: 10px;
+
+  border-radius: 50%;
+
+  background: #10b981;
+
+  box-shadow:
+    0 0 0 4px rgba(16, 185, 129, 0.08);
+}
+
+.connection-status div {
+  display: flex;
+  flex-direction: column;
+}
+
+.connection-status strong {
+  color: #e5e7eb;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.connection-status small {
+  margin-top: 2px;
+
+  color: #6b7280;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main-content {
+  min-width: 0;
+
+  flex: 1;
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+  height: 82px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 30px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e8eaf0;
+}
+
+.breadcrumb-area {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-area > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  margin-bottom: 4px;
+
+  color: #9ca3af;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+}
+
+.topbar h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  letter-spacing: -0.3px;
+}
+
+
+/* Topbar actions */
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+.topbar-actions button {
+  color: #6b7280;
+}
+
+.divider {
+  width: 1px;
+  height: 30px;
+
+  margin: 0 18px;
+
+  background: #e5e7eb;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #eef2ff;
+
+  color: #4f46e5;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 10px;
+}
+
+.user-info strong {
+  color: #111827;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.user-info span {
+  margin-top: 2px;
+
+  color: #9ca3af;
+
+  font-size: 9px;
+}
+
+.dropdown-icon {
+  margin-left: 8px;
+
+  color: #9ca3af;
+
+  font-size: 18px;
+}
+
+
+/* Mobile menu */
+
+.mobile-menu-button {
+  display: none;
+
+  margin-right: 8px;
+
+  color: #4b5563;
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+   ========================================================= */
+
+.page-content {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding: 30px;
+
+  background: #f5f7fb;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .sidebar {
+    width: 210px;
+  }
+
+  .page-content {
+    padding: 24px;
+  }
+
+  .topbar {
+    padding: 0 24px;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+  }
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .page-content {
+    padding: 18px;
+  }
+
+  .user-info,
+  .dropdown-icon {
+    display: none;
+  }
+
+  .divider {
+    margin: 0 10px;
+  }
+}

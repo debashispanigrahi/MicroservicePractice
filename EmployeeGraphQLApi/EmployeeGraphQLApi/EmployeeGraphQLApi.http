@@ -1,0 +1,6 @@
+@EmployeeGraphQLApi_HostAddress = http://localhost:5002
+
+GET {{EmployeeGraphQLApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

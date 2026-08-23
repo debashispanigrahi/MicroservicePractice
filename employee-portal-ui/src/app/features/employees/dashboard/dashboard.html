@@ -1,0 +1,244 @@
+<div class="dashboard">
+  <!-- Page heading -->
+  <div class="page-heading">
+    <div>
+      <div class="heading-eyebrow">WORKSPACE</div>
+
+      <h2>Employees</h2>
+
+      <p>Manage and explore your employee directory.</p>
+    </div>
+
+    <div class="heading-actions">
+      <button mat-stroked-button class="secondary-action">
+        <mat-icon>upload_file</mat-icon>
+
+        Bulk Upload
+      </button>
+
+      <button mat-flat-button class="primary-action">
+        <mat-icon>person_add</mat-icon>
+
+        Add Employee
+      </button>
+    </div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon employees">
+        <mat-icon>groups</mat-icon>
+      </div>
+
+      <div class="stat-content">
+        <span>Total Employees</span>
+
+        <strong>
+          {{ totalEmployees }}
+        </strong>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon active">
+        <mat-icon>verified</mat-icon>
+      </div>
+
+      <div class="stat-content">
+        <span>Records Loaded</span>
+
+        <strong>
+          {{ visibleEmployees }}
+        </strong>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon graphql">
+        <mat-icon>hub</mat-icon>
+      </div>
+
+      <div class="stat-content">
+        <span>Data Source</span>
+
+        <strong class="source"> GraphQL </strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="content-card">
+    <!-- Toolbar -->
+    <div class="table-toolbar">
+      <div>
+        <h3>Employee Directory</h3>
+
+        <span> {{ filteredEmployees.length }} employees </span>
+      </div>
+
+      <div class="search-box">
+        <mat-icon> search </mat-icon>
+
+        <input
+          type="text"
+          placeholder="Search employees..."
+          [value]="searchTerm"
+          (input)="searchTerm = $any($event.target).value; searchEmployees()"
+        />
+
+        @if (searchTerm) {
+          <button mat-icon-button (click)="searchTerm = ''; searchEmployees()">
+            <mat-icon> close </mat-icon>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Loading -->
+    @if (isLoading) {
+      <div class="state-container">
+        <mat-icon class="loading-icon"> sync </mat-icon>
+
+        <h3>Loading employees...</h3>
+
+        <p>Fetching employee data from GraphQL.</p>
+      </div>
+    }
+
+    <!-- Error -->
+    @else if (errorMessage) {
+      <div class="state-container error">
+        <mat-icon> error_outline </mat-icon>
+
+        <h3>Something went wrong</h3>
+
+        <p>
+          {{ errorMessage }}
+        </p>
+
+        <button mat-flat-button class="primary-action" (click)="loadEmployees()">Try Again</button>
+      </div>
+    }
+
+    <!-- Empty -->
+    @else if (filteredEmployees.length === 0) {
+      <div class="state-container">
+        <mat-icon> person_off </mat-icon>
+
+        <h3>No employees found</h3>
+
+        <p>Try changing your search criteria.</p>
+      </div>
+    }
+
+    <!-- Table -->
+    @else {
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>EMPLOYEE</th>
+              <th>EMAIL</th>
+              <th>CREATED</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (employee of filteredEmployees; track employee.employeeId) {
+              <tr
+                [class.selected]="selectedEmployee?.employeeId === employee.employeeId"
+                (click)="selectEmployee(employee)"
+              >
+                <td>
+                  <span class="employee-id"> #{{ employee.employeeId }} </span>
+                </td>
+
+                <td>
+                  <div class="employee-cell">
+                    <div class="employee-avatar">
+                      {{ employee.name.charAt(0).toUpperCase() }}
+                    </div>
+
+                    <div>
+                      <strong>
+                        {{ employee.name }}
+                      </strong>
+
+                      <span> Employee </span>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <span class="email">
+                    {{ employee.email }}
+                  </span>
+                </td>
+
+                <td>
+                  <span class="date">
+                    {{ employee.createdAt | date: 'dd MMM yyyy' }}
+                  </span>
+                </td>
+
+                <td class="action-cell">
+                  <mat-icon> chevron_right </mat-icon>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+
+  <!-- Selected employee -->
+  @if (selectedEmployee) {
+    <div class="details-card">
+      <div class="details-header">
+        <div>
+          <span class="details-eyebrow"> SELECTED EMPLOYEE </span>
+
+          <h3>Employee Details</h3>
+        </div>
+
+        <button mat-icon-button (click)="clearSelection()">
+          <mat-icon> close </mat-icon>
+        </button>
+      </div>
+
+      <div class="details-body">
+        <div class="large-avatar">
+          {{ selectedEmployee.name.charAt(0).toUpperCase() }}
+        </div>
+
+        <div class="details-main">
+          <h2>
+            {{ selectedEmployee.name }}
+          </h2>
+
+          <span class="employee-number"> Employee #{{ selectedEmployee.employeeId }} </span>
+        </div>
+
+        <div class="detail-item">
+          <span> EMAIL </span>
+
+          <strong>
+            {{ selectedEmployee.email }}
+          </strong>
+        </div>
+
+        <div class="detail-item">
+          <span> CREATED </span>
+
+          <strong>
+            {{ selectedEmployee.createdAt | date: 'dd MMM yyyy, hh:mm a' }}
+          </strong>
+        </div>
+      </div>
+    </div>
+  }
+</div>
