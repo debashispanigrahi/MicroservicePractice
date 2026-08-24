@@ -10,8 +10,8 @@ public interface IEmployeeService
 
     Task<Employee?> GetByIdAsync(int employeeId);
 
-    Task<int> AddAsync(AddEmployeeInput input);
-    Task<int> AddEmployeesAsync(IEnumerable<AddEmployeeInput> employees);
+    Task<int> AddAsync(Employee input);
+    Task<int> AddEmployeesAsync(IEnumerable<Employee> employees);
 }
 
 public class EmployeeService : IEmployeeService
@@ -69,7 +69,7 @@ public class EmployeeService : IEmployeeService
     }
 
     public async Task<int> AddAsync(
-        AddEmployeeInput input)
+        Employee input)
     {
         const string sql = """
             INSERT INTO Employees
@@ -102,7 +102,7 @@ public class EmployeeService : IEmployeeService
     }
 
     public async Task<int> AddEmployeesAsync(
-    IEnumerable<AddEmployeeInput> employees)
+    IEnumerable<Employee> employees)
     {
         const string sql = """
         INSERT INTO Employees

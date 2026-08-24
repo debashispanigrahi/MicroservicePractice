@@ -8,7 +8,7 @@ namespace EmployeeGraphQLApi.GraphQL.Employee;
 public class EmployeeMutations
 {
     public async Task<Models.Employee?> AddEmployee(
-        AddEmployeeInput input,
+        Models.Employee input,
         [Service] IEmployeeService employeeService)
     {
         var employeeId = await employeeService.AddAsync(input);
@@ -44,12 +44,12 @@ public class EmployeeMutations
                 "The uploaded file is empty.");
         }
 
-        List<AddEmployeeInput>? employees;
+        List<Models.Employee>? employees;
 
         try
         {
             employees =
-                JsonSerializer.Deserialize<List<AddEmployeeInput>>(
+                JsonSerializer.Deserialize<List<Models.Employee>>(
                     content,
                     new JsonSerializerOptions
                     {

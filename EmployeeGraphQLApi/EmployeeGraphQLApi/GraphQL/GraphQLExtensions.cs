@@ -1,10 +1,11 @@
+using EmployeeGraphQLApi.GraphQL.Employee;
 using HotChocolate.Execution.Configuration;
 
-namespace EmployeeGraphQLApi.GraphQL.Employee;
+namespace EmployeeGraphQLApi.GraphQL;
 
-public static class EmployeeGraphQLExtensions
+public static class GraphQLExtensions
 {
-public static IRequestExecutorBuilder AddEmployeeGraphQL(
+public static IRequestExecutorBuilder AddAllGraphQL(
         this IRequestExecutorBuilder builder)
     {
         return builder
