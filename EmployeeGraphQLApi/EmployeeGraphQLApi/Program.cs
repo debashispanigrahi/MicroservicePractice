@@ -1,4 +1,4 @@
-using EmployeeGraphQLApi.GraphQL;
+using EmployeeGraphQLApi.GraphQL.Employee;
 using EmployeeGraphQLApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,8 +21,9 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 builder.Services
     .AddGraphQLServer()
-    .AddQueryType<Query>()
-    .AddMutationType<Mutation>()
+    .AddQueryType(d => d.Name("Query"))
+    .AddMutationType(d => d.Name("Mutation"))
+    .AddEmployeeGraphQL()
     .AddType<UploadType>();
 
 var app = builder.Build();

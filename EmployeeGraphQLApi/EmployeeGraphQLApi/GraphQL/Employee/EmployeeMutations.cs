@@ -2,11 +2,12 @@
 using EmployeeGraphQLApi.Services;
 using System.Text.Json;
 
-namespace EmployeeGraphQLApi.GraphQL;
+namespace EmployeeGraphQLApi.GraphQL.Employee;
 
-public class Mutation
+[ExtendObjectType("Mutation")]
+public class EmployeeMutations
 {
-    public async Task<Employee?> AddEmployee(
+    public async Task<Models.Employee?> AddEmployee(
         AddEmployeeInput input,
         [Service] IEmployeeService employeeService)
     {
