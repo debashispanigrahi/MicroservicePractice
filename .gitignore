@@ -90,5 +90,6 @@ Desktop.ini
 # Misc
 # =========================
 
+.idea/
 *.tmp
 *.temp
