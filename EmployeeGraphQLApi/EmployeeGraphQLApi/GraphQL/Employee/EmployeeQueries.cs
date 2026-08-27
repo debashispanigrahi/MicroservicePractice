@@ -1,7 +1,9 @@
 ﻿using EmployeeGraphQLApi.Services;
+using HotChocolate.Authorization;
 
 namespace EmployeeGraphQLApi.GraphQL.Employee;
 
+[Authorize]
 [ExtendObjectType("Query")]
 public class EmployeeQueries
 {

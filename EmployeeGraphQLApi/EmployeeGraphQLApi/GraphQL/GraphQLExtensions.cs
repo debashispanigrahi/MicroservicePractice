@@ -1,3 +1,4 @@
+using EmployeeGraphQLApi.GraphQL.Auth;
 using EmployeeGraphQLApi.GraphQL.Employee;
 using HotChocolate.Execution.Configuration;
 
@@ -10,6 +11,7 @@ public static IRequestExecutorBuilder AddAllGraphQL(
     {
         return builder
             .AddTypeExtension<EmployeeQueries>()
-            .AddTypeExtension<EmployeeMutations>();
+            .AddTypeExtension<EmployeeMutations>()
+            .AddTypeExtension<AuthMutations>();
     }
 }

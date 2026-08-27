@@ -1,9 +1,9 @@
-﻿using EmployeeGraphQLApi.Models;
-using EmployeeGraphQLApi.Services;
+﻿using EmployeeGraphQLApi.Services;
 using System.Text.Json;
+using HotChocolate.Authorization;
 
 namespace EmployeeGraphQLApi.GraphQL.Employee;
-
+[Authorize]
 [ExtendObjectType("Mutation")]
 public class EmployeeMutations
 {
@@ -56,10 +56,9 @@ public class EmployeeMutations
                         PropertyNameCaseInsensitive = true
                     });
         }
-        catch (JsonException)
+        catch (JsonException x)
         {
-            throw new GraphQLException(
-                "The file does not contain valid employee JSON.");
+            throw new GraphQLException(x.Message);
         }
 
         if (employees == null || employees.Count == 0)
