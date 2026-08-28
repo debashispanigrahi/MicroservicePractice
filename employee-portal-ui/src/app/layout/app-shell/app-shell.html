@@ -1,5 +1,7 @@
 <div class="app-shell">
+  <!-- SIDEBAR -->
   <aside class="sidebar">
+    <!-- BRAND -->
     <div class="brand">
       <div class="brand-mark">
         <mat-icon>hub</mat-icon>
@@ -11,6 +13,7 @@
       </div>
     </div>
 
+    <!-- NAVIGATION -->
     <div class="navigation">
       <div class="nav-section-title">WORKSPACE</div>
 
@@ -42,6 +45,7 @@
       </a>
     </div>
 
+    <!-- CONNECTION -->
     <div class="sidebar-footer">
       <div class="connection-status">
         <span class="status-dot"></span>
@@ -54,7 +58,9 @@
     </div>
   </aside>
 
+  <!-- MAIN CONTENT -->
   <main class="main-content">
+    <!-- TOP BAR -->
     <header class="topbar">
       <div class="breadcrumb-area">
         <button mat-icon-button class="mobile-menu-button">
@@ -68,26 +74,32 @@
         </div>
       </div>
 
+      <!-- TOP RIGHT -->
       <div class="topbar-actions">
         <button mat-icon-button matTooltip="Notifications">
-          <mat-icon>notifications_none</mat-icon>
+          <mat-icon> notifications_none </mat-icon>
         </button>
 
         <div class="divider"></div>
 
+        <!-- USER -->
         <div class="user-profile">
           <div class="avatar">S</div>
 
           <div class="user-info">
-            <strong>Sipu</strong>
-            <span>Administrator</span>
+            <strong> Sipu </strong>
+
+            <span> Administrator </span>
           </div>
 
-          <mat-icon class="dropdown-icon"> expand_more </mat-icon>
+          <button mat-icon-button matTooltip="Logout" class="logout-button" (click)="logout()">
+            <mat-icon> logout </mat-icon>
+          </button>
         </div>
       </div>
     </header>
 
+    <!-- PAGE -->
     <section class="page-content">
       <router-outlet />
     </section>

@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
-import {
-  RouterLink,
-  RouterLinkActive,
-  RouterOutlet
-} from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-shell',
@@ -17,9 +15,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     RouterLinkActive,
     MatIconModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   templateUrl: './app-shell.html',
-  styleUrl: './app-shell.scss'
+  styleUrl: './app-shell.scss',
 })
-export class AppShell {}
+export class AppShell {
+  private readonly authService = inject(AuthService);
+
+  logout(): void {
+    this.authService.logout();
+  }
+}

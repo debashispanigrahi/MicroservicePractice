@@ -1,0 +1,99 @@
+<div class="login-page">
+  <!-- Background decoration -->
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <div class="login-container">
+    <div class="login-card">
+      <!-- Brand -->
+      <div class="brand">
+        <div class="brand-mark">
+          <span>EH</span>
+        </div>
+
+        <div class="brand-text">
+          <span class="brand-name">EmployeeHub</span>
+          <span class="brand-description"> Employee Management Platform </span>
+        </div>
+      </div>
+
+      <!-- Heading -->
+      <div class="login-header">
+        <h1>Welcome back</h1>
+
+        <p>Sign in to continue to your employee workspace.</p>
+      </div>
+
+      <!-- Error -->
+      @if (errorMessage) {
+        <div class="error-message">
+          <span class="error-icon">!</span>
+
+          <div>
+            <strong>Sign in failed</strong>
+            <p>{{ errorMessage }}</p>
+          </div>
+        </div>
+      }
+
+      <!-- Login form -->
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+        <!-- Username -->
+        <div class="form-field">
+          <label for="username"> Username </label>
+
+          <input
+            id="username"
+            type="text"
+            formControlName="userName"
+            placeholder="Enter your username"
+            autocomplete="username"
+          />
+
+          @if (loginForm.controls.userName.touched && loginForm.controls.userName.invalid) {
+            <span class="field-error"> Username is required. </span>
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="form-field">
+          <label for="password"> Password </label>
+
+          <div class="password-wrapper">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+            />
+
+            <button type="button" class="password-toggle" (click)="togglePassword()">
+              {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+
+          @if (loginForm.controls.password.touched && loginForm.controls.password.invalid) {
+            <span class="field-error"> Password is required. </span>
+          }
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="login-button" [disabled]="loginForm.invalid || loading">
+          @if (loading) {
+            <span class="spinner"></span>
+            <span>Signing in...</span>
+          } @else {
+            <span>Sign in</span>
+          }
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <div class="login-footer">
+        <span class="footer-dot"></span>
+        Secure Employee Management
+      </div>
+    </div>
+  </div>
+</div>
