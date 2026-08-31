@@ -9,52 +9,38 @@ import { Employee } from '../models/employee';
 import { AddEmployeeInput } from '../models/add-employee-input';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class GraphQLEmployeeService
-  extends EmployeeDataService {
-
+export class GraphQLEmployeeService extends EmployeeDataService {
   private readonly apollo = inject(Apollo);
 
-  override getAll(
-  fields?: string[]
-): Observable<Employee[]> {
-
-  const query = gql`
-    query GetEmployees {
-      employees {
-        employeeId
-        name
-        email
-        createdAt
+  override getAll(fields?: string[]): Observable<Employee[]> {
+    const query = gql`
+      query GetEmployees {
+        employees {
+          employeeId
+          name
+          email
+          createdAt
+        }
       }
-    }
-  `;
+    `;
 
-  console.log('GraphQL getAll() called');
-
-  return this.apollo
-    .query<{
-      employees: Employee[];
-    }>({
-      query,
-      fetchPolicy: 'network-only'
-    })
-    .pipe(
-      map(result => {
-
-        console.log('Apollo result:', result);
-
-        return result.data?.employees ?? [];
+    return this.apollo
+      .query<{
+        employees: Employee[];
+      }>({
+        query,
+        fetchPolicy: 'network-only',
       })
-    );
-}
+      .pipe(
+        map((result) => {
+          return result.data?.employees ?? [];
+        }),
+      );
+  }
 
-  override getById(
-    id: number,
-    fields?: string[]
-  ): Observable<Employee | null> {
-
+  override getById(id: number, fields?: string[]): Observable<Employee | null> {
     const query = gql`
       query GetEmployee($id: Int!) {
         employee(id: $id) {
@@ -72,26 +58,44 @@ export class GraphQLEmployeeService
       }>({
         query,
         variables: {
-          id
+          id,
         },
-        fetchPolicy: 'network-only'
+        fetchPolicy: 'network-only',
+      })
+      .pipe(map((result) => result.data?.employee ?? null));
+  }
+
+  override add(input: AddEmployeeInput): Observable<Employee> {
+    const mutation = gql`
+      mutation AddEmployee($input: AddEmployeeInput!) {
+        addEmployee(input: $input) {
+          name
+          email
+        }
+      }
+    `;
+
+    return this.apollo
+      .mutate<{
+        addEmployee: Employee;
+      }>({
+        mutation,
+        variables: {
+          input,
+        },
       })
       .pipe(
-        map(result => result.data?.employee ?? null)
+        map((result) => {
+          if (!result.data?.addEmployee) {
+            throw new Error('Employee could not be added.');
+          }
+
+          return result.data.addEmployee;
+        }),
       );
   }
 
-  override add(
-    input: AddEmployeeInput
-  ): Observable<Employee> {
-
-    throw new Error('Not implemented yet.');
-  }
-
-  override upload(
-    file: File
-  ): Observable<number> {
-
+  override upload(file: File): Observable<number> {
     throw new Error('Not implemented yet.');
   }
 }

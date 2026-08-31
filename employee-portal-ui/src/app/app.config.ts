@@ -8,6 +8,7 @@ import { InMemoryCache } from '@apollo/client';
 import { GraphQLEmployeeService } from './core/services/graphql-employee.service';
 import { EmployeeDataService } from './core/services/employee-data.service';
 import { authInterceptor } from './core/auth/auth.interceptor';
+import { provideToastr } from '@iqx-limited/ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,5 +29,6 @@ export const appConfig: ApplicationConfig = {
         cache: new InMemoryCache(),
       };
     }),
+    provideToastr()
   ],
 };

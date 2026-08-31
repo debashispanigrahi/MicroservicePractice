@@ -1,0 +1,151 @@
+<div class="add-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-icon">
+      <mat-icon>person_add</mat-icon>
+    </div>
+
+    <div class="header-content">
+      <div class="eyebrow">EMPLOYEE MANAGEMENT</div>
+
+      <h1>Add Employee</h1>
+
+      <p>Create a new employee record in your directory.</p>
+    </div>
+  </div>
+
+  <!-- Employee Form -->
+  <form [formGroup]="addEmployeeForm" (ngSubmit)="submit()" class="employee-form">
+    <div class="form-card">
+      <!-- Card Header -->
+      <div class="card-header">
+        <div class="card-title">
+          <h2>Employee Details</h2>
+
+          <p>Enter the basic information for the new employee.</p>
+        </div>
+
+        <div class="required-info"><span>*</span> Required fields</div>
+      </div>
+
+      <!-- Form Fields -->
+      <div class="form-body">
+        <!-- Full Name -->
+        <div class="form-field">
+          <label for="name"> Full Name <span>*</span> </label>
+
+          <div
+            class="input-wrapper"
+            [class.input-error]="
+              addEmployeeForm.controls.name.touched && addEmployeeForm.controls.name.invalid
+            "
+          >
+            <mat-icon>person_outline</mat-icon>
+
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Enter employee name"
+              autocomplete="name"
+            />
+          </div>
+
+          @if (addEmployeeForm.controls.name.touched && addEmployeeForm.controls.name.invalid) {
+            <span class="field-error"> Name is required. </span>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="form-field">
+          <label for="email"> Email Address <span>*</span> </label>
+
+          <div
+            class="input-wrapper"
+            [class.input-error]="
+              addEmployeeForm.controls.email.touched && addEmployeeForm.controls.email.invalid
+            "
+          >
+            <mat-icon>mail_outline</mat-icon>
+
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="Enter employee email"
+              autocomplete="email"
+            />
+          </div>
+
+          @if (addEmployeeForm.controls.email.touched && addEmployeeForm.controls.email.invalid) {
+            <span class="field-error">
+              @if (addEmployeeForm.controls.email.hasError('required')) {
+                Email is required.
+              }
+
+              @if (
+                !addEmployeeForm.controls.email.hasError('required') &&
+                addEmployeeForm.controls.email.hasError('email')
+              ) {
+                Please enter a valid email address.
+              }
+            </span>
+          }
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="card-footer">
+        <div class="secure-message">
+          <mat-icon>verified_user</mat-icon>
+
+          <span> Employee data is securely stored. </span>
+        </div>
+
+        <div class="form-actions">
+          <button
+            type="button"
+            mat-stroked-button
+            class="cancel-button"
+            [disabled]="loading"
+            (click)="cancel()"
+          >
+            Cancel
+          </button>
+
+          <!--
+            Keep mat-icon as a single root element.
+            This avoids Angular Material content projection warnings.
+          -->
+          <button
+            type="submit"
+            mat-flat-button
+            class="submit-button"
+            [disabled]="addEmployeeForm.invalid || loading"
+          >
+            <mat-icon>
+              {{ loading ? 'hourglass_top' : 'person_add' }}
+            </mat-icon>
+
+            <span>
+              {{ loading ? 'Adding Employee...' : 'Add Employee' }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Information -->
+  <div class="info-card">
+    <div class="info-icon">
+      <mat-icon>info_outline</mat-icon>
+    </div>
+
+    <div class="info-content">
+      <strong>About employee records</strong>
+
+      <p>Once added, the employee will immediately appear in the Employee Directory.</p>
+    </div>
+  </div>
+</div>

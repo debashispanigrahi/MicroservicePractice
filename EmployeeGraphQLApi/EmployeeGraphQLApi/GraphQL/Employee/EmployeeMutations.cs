@@ -3,15 +3,21 @@ using System.Text.Json;
 using HotChocolate.Authorization;
 
 namespace EmployeeGraphQLApi.GraphQL.Employee;
+
 [Authorize]
 [ExtendObjectType("Mutation")]
 public class EmployeeMutations
 {
     public async Task<Models.Employee?> AddEmployee(
-        Models.Employee input,
+        Models.AddEmployee input,
         [Service] IEmployeeService employeeService)
     {
-        var employeeId = await employeeService.AddAsync(input);
+        var employee = new Models.Employee
+        {
+            Name = input.name,
+            Email = input.email
+        };
+        var employeeId = await employeeService.AddAsync(employee);
 
         return await employeeService.GetByIdAsync(employeeId);
     }

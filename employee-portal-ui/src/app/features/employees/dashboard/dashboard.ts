@@ -7,10 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { Employee } from '../../../core/models/employee';
 import { EmployeeDataService } from '../../../core/services/employee-data.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, RouterLink],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

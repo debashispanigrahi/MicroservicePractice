@@ -23,10 +23,10 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/employees/dashboard/dashboard').then((m) => m.Dashboard),
       },
-      // {
-      //   path: 'add',
-      //   loadComponent: () => import('./features/employees/add/add').then((m) => m.Add),
-      // },
+      {
+        path: 'add',
+        loadComponent: () => import('./features/employees/add/add').then((m) => m.Add),
+      },
       // {
       //   path: 'upload',
       //   loadComponent: () => import('./features/employees/upload/upload').then((m) => m.Upload),
