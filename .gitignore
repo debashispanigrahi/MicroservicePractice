@@ -2,6 +2,9 @@
 # .NET / Visual Studio
 # =========================
 
+# Track application settings for all current and future projects.
+!**/appsettings*.json
+
 .run/
 
 
