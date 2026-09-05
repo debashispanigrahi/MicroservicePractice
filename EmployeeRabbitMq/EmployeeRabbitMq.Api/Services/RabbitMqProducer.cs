@@ -42,19 +42,20 @@ public class RabbitMqProducer(IConfiguration configuration) : IAsyncDisposable
         var exchange = configuration["RabbitMq:Exchange"]!;
         var queue = configuration["RabbitMq:Queue"]!;
         var routingKey = configuration["RabbitMq:RoutingKey"]!;
+        var channel = _channel ?? throw new InvalidOperationException("RabbitMQ channel was not initialized.");
 
-        await _channel!.ExchangeDeclareAsync(
+        await channel.ExchangeDeclareAsync(
             exchange,
             ExchangeType.Direct,
             durable: true);
 
-        await _channel.QueueDeclareAsync(
+        await channel.QueueDeclareAsync(
             queue,
             durable: true,
             exclusive: false,
             autoDelete: false);
 
-        await _channel.QueueBindAsync(
+        await channel.QueueBindAsync(
             queue,
             exchange,
             routingKey);
@@ -69,7 +70,7 @@ public class RabbitMqProducer(IConfiguration configuration) : IAsyncDisposable
             DeliveryMode = DeliveryModes.Persistent
         };
 
-        await _channel.BasicPublishAsync(
+        await channel.BasicPublishAsync(
             exchange,
             routingKey,
             mandatory: false,
