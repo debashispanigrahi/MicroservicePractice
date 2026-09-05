@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeRabbitMq.Api", "Emp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeRabbitMq.Worker", "EmployeeRabbitMq.Worker\EmployeeRabbitMq.Worker.csproj", "{4D55D2AE-F8CE-4DB2-BBC0-303A1015C85B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeRabbitMq.Contracts", "EmployeeRabbitMq.Contracts\EmployeeRabbitMq.Contracts.csproj", "{98545EE9-6B7F-48A9-BCDE-00530EA48278}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,18 @@ Global
 		{4D55D2AE-F8CE-4DB2-BBC0-303A1015C85B}.Release|x64.Build.0 = Release|Any CPU
 		{4D55D2AE-F8CE-4DB2-BBC0-303A1015C85B}.Release|x86.ActiveCfg = Release|Any CPU
 		{4D55D2AE-F8CE-4DB2-BBC0-303A1015C85B}.Release|x86.Build.0 = Release|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Debug|x64.Build.0 = Debug|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Debug|x86.Build.0 = Debug|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Release|x64.ActiveCfg = Release|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Release|x64.Build.0 = Release|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Release|x86.ActiveCfg = Release|Any CPU
+		{98545EE9-6B7F-48A9-BCDE-00530EA48278}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

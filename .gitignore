@@ -1,8 +1,9 @@
-**/appsettings*.json
-
 # =========================
 # .NET / Visual Studio
 # =========================
+
+.run/
+
 
 # Build output
 bin/
